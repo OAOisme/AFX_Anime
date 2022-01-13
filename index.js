@@ -72,6 +72,7 @@ const scrape = (pattern) =>
 app.get('/', (req, res) =>
 {
     try{
+        res.render('main');
     
     }catch(e)
     {
@@ -79,9 +80,9 @@ app.get('/', (req, res) =>
     }
 })
 
-app.get('/search/:name', (req, res) =>
+app.get('/search', (req, res) =>
 {
-    const {name} = req.params;
+    const name = req.query.name;
     singlelist(name)
     .then(r =>
         {
