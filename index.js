@@ -137,7 +137,7 @@ app.get('/cat/:start/:end/:id/:title', (req, res)=>
         for (const rip of rap) {
             epis.push(rip.querySelector('a').href);
         }
-        res.render('episodes', {episodes:epis});
+        res.render('episodes', {episodes:epis, title:title});
     })
 })
 
