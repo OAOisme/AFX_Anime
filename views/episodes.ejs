@@ -8,7 +8,7 @@
 </head>
 <body>
     <% for(issue of episodes){ %> 
-        <a href="<%= issue %>"><%= issue.slice(1,-1) %> </a>
+        <a href="<%= issue %>"><%= issue.slice(1, issue.length - 1) %> </a>
         <br>
 <% } %> 
     
