@@ -12,13 +12,21 @@
                     <% for (rip of arp){ %>
                         <div class="col-lg-4 col-md-6 col-sm-12">
 
-                            <% if(rip.img){ %>
+                          <!--  <% if(rip.img){ %>
                                 <img src="<%= rip.img %> " alt="" width="300" height="422">
                                 <% } %>
                                     <h1><a href="<%= rip.link %> ">
                                             <%= rip.name %>
                                         </a></h1>
                                     <br>
+                                    -->
+                                    <div class="card text-center" style="width: 18rem;">
+                                        <img src="<%= rip.img %>" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                          <h5 class="card-title"><%= rip.name %></h5>
+                                          <a href="<%= rip.link %>" class="btn btn-primary">Download</a>
+                                        </div>
+                                      </div>
                         </div>
                         <% } %>
                 </div>
