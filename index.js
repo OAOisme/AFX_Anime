@@ -13,11 +13,9 @@ async function singlelist(url) {
     let response = await axios(`https://www3.gogoanime.cm//search.html?keyword=${url}`)
 
     if (response.status === 200) {
-        console.log('YES');
         return response.data;
     }
     else {
-        console.log("NO")
         return 1;
     }
 }
@@ -27,11 +25,9 @@ async function showepisode(url) {
     let response = await axios(`https://www3.gogoanime.cm/category/${url}`)
 
     if (response.status === 200) {
-        console.log('YES');
         return response.data;
     }
     else {
-        console.log("NO")
         return 1;
     }
 }
@@ -40,11 +36,9 @@ async function showepisodes(start, end, id, title)
 {
     let response = await axios(`https://ajax.gogo-load.com/ajax/load-list-episode?ep_start=${start}&ep_end=${end}&id=${id}&default_ep=0&alias=${title}`)
     if (response.status === 200) {
-        console.log('YES');
         return response.data;
     }
     else {
-        console.log("NO")
         return 1;
     }
 }
@@ -106,7 +100,6 @@ app.get('/category/:name', (req, res) =>
     {
         const dom = new jsdom.JSDOM(r);
         const show = dom.window.document.querySelector('#episode_page');
-        const shop = dom.window.document.querySelector('.anime_info_episodes_next');
         const id = shop.querySelector('input').value;
         console.log(id);
         
@@ -122,17 +115,11 @@ app.get('/category/:name', (req, res) =>
 app.get('/cat/:start/:end/:id/:title', (req, res)=>
 {
     const {start, end, id, title } = req.params;
-    console.log(start)
-    console.log(end)
-    console.log(id)
-    console.log(title)
-    //showepisodes(1, 50, 1089, 'naruto').then((r) =>
 
     showepisodes(start, end, id, title).then((r) =>
     {
         const dom = new jsdom.JSDOM(r);
         const epis = [];
-        //console.log(r);
         const rap = dom.window.document.querySelectorAll('li'); 
         for (const rip of rap) {
             epis.push(rip.querySelector('a').href);
@@ -146,12 +133,8 @@ app.get('/:comp', (req, res) =>
     const {comp} = req.params;
     axios(`https://www3.gogoanime.cm/${comp}`).then((r) =>
     {
-        //console.log(r.data);
-        //res.send(r.data);
         const dom = new jsdom.JSDOM(r.data);
         let download = dom.window.document.querySelector('.dowloads').getElementsByTagName('A')[0].href;
-        console.log(download);
-        console.log('OUTSIDE');
         res.redirect(download);
     })
     
